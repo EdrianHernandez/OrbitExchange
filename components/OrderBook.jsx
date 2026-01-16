@@ -1,14 +1,10 @@
 import React from 'react';
-import { Order } from '../types';
 import { ArrowDown, ArrowUp, MoreHorizontal } from 'lucide-react';
 
-interface OrderBookProps {
-  asks: Order[];
-  bids: Order[];
-  lastPrice: number;
-}
-
-const OrderRow: React.FC<{ order: Order }> = ({ order }) => {
+/**
+ * Renders a single row in the order book for either a bid or an ask.
+ */
+const OrderRow = ({ order }) => {
   const isBid = order.type === 'bid';
   return (
     <div className="relative grid grid-cols-3 text-xs py-0.5 hover:bg-ex-border/40 cursor-pointer font-mono group">
@@ -31,7 +27,10 @@ const OrderRow: React.FC<{ order: Order }> = ({ order }) => {
   );
 };
 
-export const OrderBook: React.FC<OrderBookProps> = ({ asks, bids, lastPrice }) => {
+/**
+ * Main OrderBook component displaying real-time buy and sell orders.
+ */
+export const OrderBook = ({ asks, bids, lastPrice }) => {
   return (
     <div className="flex flex-col h-full bg-ex-bg border-l border-b md:border-b-0 border-ex-border">
       {/* Header */}
