@@ -1,16 +1,14 @@
 import React from 'react';
-import { TickerData } from '../types';
 import { ChevronDown } from 'lucide-react';
 
-interface TradingPairHeaderProps {
-  data: TickerData;
-}
-
-export const TradingPairHeader: React.FC<TradingPairHeaderProps> = ({ data }) => {
+/**
+ * Renders the header for a trading pair, displaying ticker information like price and 24h volume.
+ */
+export const TradingPairHeader = ({ data }) => {
   const isPositive = data.priceChange >= 0;
 
-  const formatPrice = (val: number) => val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const formatVol = (val: number) => val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const formatPrice = (val) => val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const formatVol = (val) => val.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   return (
     <div className="flex flex-col md:flex-row items-start md:items-center justify-between px-4 py-3 bg-ex-bg border-b border-ex-border">
