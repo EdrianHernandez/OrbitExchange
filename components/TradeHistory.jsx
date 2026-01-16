@@ -1,11 +1,9 @@
 import React from 'react';
-import { Trade } from '../types';
 
-interface TradeHistoryProps {
-  trades: Trade[];
-}
-
-export const TradeHistory: React.FC<TradeHistoryProps> = ({ trades }) => {
+/**
+ * Component to display the recent market trade history.
+ */
+export const TradeHistory = ({ trades }) => {
   return (
     <div className="flex flex-col h-full bg-ex-bg border-l border-ex-border">
       <div className="flex items-center justify-between px-4 py-3 border-b border-ex-border">
