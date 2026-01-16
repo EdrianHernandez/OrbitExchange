@@ -11,14 +11,12 @@ import {
   Bar,
   Cell
 } from 'recharts';
-import { Candle } from '../types';
 import { Maximize2, Settings, PenTool } from 'lucide-react';
 
-interface TradingChartProps {
-  data: Candle[];
-}
-
-const CustomTooltip = ({ active, payload, label }: any) => {
+/**
+ * Custom tooltip for the trading chart displaying price and volume data.
+ */
+const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-ex-card border border-ex-border p-2 rounded shadow-xl text-xs font-mono">
@@ -33,7 +31,10 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-export const TradingChart: React.FC<TradingChartProps> = ({ data }) => {
+/**
+ * Interactive trading chart component using Recharts to visualize price action and volume.
+ */
+export const TradingChart = ({ data }) => {
   const [timeframe, setTimeframe] = useState('1H');
   const timeframes = ['15m', '1H', '4H', '1D', '1W'];
 
