@@ -3,12 +3,14 @@ import { TradingPairHeader } from './components/TradingPairHeader';
 import { OrderBook } from './components/OrderBook';
 import { TradeHistory } from './components/TradeHistory';
 import { TradingChart } from './components/TradingChart';
-import { Order, Trade, Candle, TickerData } from './types';
 import { Wallet, LayoutGrid } from 'lucide-react';
 
 // --- Mock Data Generators ---
 
-const generateTicker = (): TickerData => ({
+/**
+ * Generates initial ticker data
+ */
+const generateTicker = () => ({
   symbol: 'BTC/USDT',
   lastPrice: 42150.25,
   priceChange: 1250.50,
@@ -19,9 +21,12 @@ const generateTicker = (): TickerData => ({
   quoteVolume: 189.5,
 });
 
-const generateOrderBook = (basePrice: number): { asks: Order[]; bids: Order[] } => {
-  const asks: Order[] = [];
-  const bids: Order[] = [];
+/**
+ * Generates mock order book data based on a price
+ */
+const generateOrderBook = (basePrice) => {
+  const asks = [];
+  const bids = [];
   
   for (let i = 0; i < 15; i++) {
     const askPrice = basePrice + (i + 1) * 5 + Math.random() * 5;
@@ -51,7 +56,10 @@ const generateOrderBook = (basePrice: number): { asks: Order[]; bids: Order[] } 
   return { asks, bids };
 };
 
-const generateTrades = (basePrice: number): Trade[] => {
+/**
+ * Generates mock trade history
+ */
+const generateTrades = (basePrice) => {
   return Array.from({ length: 25 }, (_, i) => ({
     id: Math.random().toString(36).substr(2, 9),
     price: basePrice + (Math.random() - 0.5) * 50,
@@ -61,8 +69,11 @@ const generateTrades = (basePrice: number): Trade[] => {
   }));
 };
 
-const generateCandles = (): Candle[] => {
-  const data: Candle[] = [];
+/**
+ * Generates mock candlestick chart data
+ */
+const generateCandles = () => {
+  const data = [];
   let price = 41000;
   const now = new Date();
   
@@ -88,11 +99,11 @@ const generateCandles = (): Candle[] => {
 
 // --- Main App Component ---
 
-const App: React.FC = () => {
-  const [ticker, setTicker] = useState<TickerData>(generateTicker());
+const App = () => {
+  const [ticker, setTicker] = useState(generateTicker());
   const [orderBook, setOrderBook] = useState(generateOrderBook(ticker.lastPrice));
-  const [trades, setTrades] = useState<Trade[]>(generateTrades(ticker.lastPrice));
-  const [candles] = useState<Candle[]>(generateCandles());
+  const [trades, setTrades] = useState(generateTrades(ticker.lastPrice));
+  const [candles] = useState(generateCandles());
 
   // Simulate real-time updates
   useEffect(() => {
@@ -111,7 +122,7 @@ const App: React.FC = () => {
       setOrderBook(generateOrderBook(newPrice));
 
       // Add a new trade
-      const newTrade: Trade = {
+      const newTrade = {
         id: Math.random().toString(36).substr(2, 9),
         price: newPrice + (Math.random() - 0.5) * 5,
         amount: Math.random() * 0.2,
