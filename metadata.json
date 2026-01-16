@@ -1,0 +1,5 @@
+{
+  "name": "OrbitExchange",
+  "description": "A high-performance, dark-mode cryptocurrency exchange interface featuring real-time order books, trade history, and interactive charting.",
+  "requestFramePermissions": []
+}
